@@ -97,7 +97,6 @@ typedef struct
   */
 
 
-
 /* Exported constants --------------------------------------------------------*/
 /** @defgroup STM32U5x9J_DISCOVERY_OSPI_Exported_Constants OSPI Exported Constants
   * @{
@@ -244,7 +243,6 @@ HAL_StatusTypeDef MX_OSPI_NOR_Init(XSPI_HandleTypeDef *hospi, MX_OSPI_InitTypeDe
 /**
   * @}
   */
-
 
 
 /**

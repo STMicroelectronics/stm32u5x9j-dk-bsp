@@ -328,7 +328,6 @@ void BSP_MMC_IRQHandler(void)
 }
 
 
-
 /**
   * @brief  Gets the current MMC card data status.
   * @retval Data transfer state.

@@ -580,6 +580,23 @@ static int32_t vl53l5cx_i2c_recover(void)
     return BSP_ERROR_COMPONENT_FAILURE;
   }
 
+  /* Restore the GPIO config of I2C3 SCL and SDA */
+  /* Configure I2C TX as Alternate Function       */
+  GPIO_InitStruct.Pin           = BUS_I2C3_SCL_PIN;
+  GPIO_InitStruct.Mode          = GPIO_MODE_AF_OD;
+  GPIO_InitStruct.Pull          = GPIO_PULLUP;
+  GPIO_InitStruct.Speed         = GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.Alternate     = BUS_I2C3_SCL_AF;
+  HAL_GPIO_Init(BUS_I2C3_SCL_GPIO_PORT, &GPIO_InitStruct);
+
+  /* Configure I2C Rx as alternate function */
+  GPIO_InitStruct.Pin           = BUS_I2C3_SDA_PIN;
+  GPIO_InitStruct.Mode          = GPIO_MODE_AF_OD;
+  GPIO_InitStruct.Pull          = GPIO_PULLUP;
+  GPIO_InitStruct.Speed         = GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.Alternate     = BUS_I2C3_SDA_AF;
+  HAL_GPIO_Init(BUS_I2C3_SDA_GPIO_PORT, &GPIO_InitStruct);
+
   is_already_init = 1U;
 
   return BSP_ERROR_NONE;

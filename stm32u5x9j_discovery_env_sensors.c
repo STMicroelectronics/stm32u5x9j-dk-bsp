@@ -60,7 +60,7 @@ ENV_SENSOR_FuncDrv_t *Env_Sensor_FuncDrv[ENV_SENSOR_INSTANCES_NBR][ENV_SENSOR_FU
   * @}
   */
 
-/** @defgroup STM32U5x9J_DISCOVERY_ENV_SENSORS_Private_Function_Prototypes ENVIRONMENTAL SENSORS Private Function Prototypes
+/** @defgroup STM32U5x9J_DISCOVERY_ENV_SENSORS_Private_Function_Prototypes ENVIRONMENTAL SENSORS Private Prototypes
   * @{
   */
 static int32_t STTS22H_Probe(uint32_t Functions);

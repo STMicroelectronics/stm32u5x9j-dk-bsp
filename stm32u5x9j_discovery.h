@@ -147,10 +147,10 @@ typedef struct
 #endif /* !USE_STM32U5x9J_DISCOVERY */
 
 /**
-  * @brief STM32U5x9J_DISCOVERY BSP Driver version number V1.2.0
+  * @brief STM32U5x9J_DISCOVERY BSP Driver version number V1.3.0
   */
 #define STM32U5x9J_DISCOVERY_BSP_VERSION_MAIN   (uint32_t)(0x01) /*!< [31:24] main version */
-#define STM32U5x9J_DISCOVERY_BSP_VERSION_SUB1   (uint32_t)(0x02) /*!< [23:16] sub1 version */
+#define STM32U5x9J_DISCOVERY_BSP_VERSION_SUB1   (uint32_t)(0x03) /*!< [23:16] sub1 version */
 #define STM32U5x9J_DISCOVERY_BSP_VERSION_SUB2   (uint32_t)(0x00) /*!< [15:8]  sub2 version */
 #define STM32U5x9J_DISCOVERY_BSP_VERSION_RC     (uint32_t)(0x00) /*!< [7:0]  release candidate */
 #define STM32U5x9J_DISCOVERY_BSP_VERSION        ((STM32U5x9J_DISCOVERY_BSP_VERSION_MAIN << 24)\

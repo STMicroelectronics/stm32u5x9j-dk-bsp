@@ -129,6 +129,7 @@ static int32_t LCD_DeInit(void);
 
 static int32_t LCD_ConvertLineToARGB8888(uint32_t *pSrc, uint32_t *pDst, uint32_t xSize, uint32_t ColorMode);
 
+static void    LCD_Set_Default_Clock(void);
 static void    GFXMMU_MspInit(GFXMMU_HandleTypeDef *hgfxmmu);
 static void    GFXMMU_MspDeInit(GFXMMU_HandleTypeDef *hgfxmmu);
 static void    LTDC_MspInit(LTDC_HandleTypeDef *hltdc);
@@ -862,6 +863,8 @@ __weak HAL_StatusTypeDef MX_DSI_Init(DSI_HandleTypeDef *hdsi)
   {
     return HAL_ERROR;
   }
+
+  LCD_Set_Default_Clock();
 
   return HAL_OK;
 }
@@ -1597,6 +1600,26 @@ static int32_t LCD_ConvertLineToARGB8888(uint32_t *pSrc, uint32_t *pDst, uint32_
 
   return status;
 }
+/**
+  * @brief  Set the default DSI clock.
+  * @param  None
+  * @retval None
+  */
+void LCD_Set_Default_Clock(void)
+{
+  RCC_PeriphCLKInitTypeDef  DSIPHYInitPeriph;
+
+  /* Switch to DSI PHY PLL clock */
+  DSIPHYInitPeriph.PeriphClockSelection = RCC_PERIPHCLK_DSI;
+  DSIPHYInitPeriph.DsiClockSelection    = RCC_DSICLKSOURCE_DSIPHY;
+
+  (void)HAL_RCCEx_PeriphCLKConfig(&DSIPHYInitPeriph);
+
+  /* LCD Reset */
+  HAL_Delay(11);
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5, GPIO_PIN_SET);
+  HAL_Delay(150);
+}
 
 /**
   * @brief  Initialize GFXMMU MSP.
@@ -1680,7 +1703,6 @@ static void LTDC_MspDeInit(LTDC_HandleTypeDef *hltdc)
 static void DSI_MspInit(DSI_HandleTypeDef *hdsi)
 {
   RCC_PeriphCLKInitTypeDef  PLL3InitPeriph = {0};
-  RCC_PeriphCLKInitTypeDef  DSIPHYInitPeriph = {0};
   GPIO_InitTypeDef          GPIO_InitStruct  = {0};
 
   UNUSED(hdsi);
@@ -1703,9 +1725,6 @@ static void DSI_MspInit(DSI_HandleTypeDef *hdsi)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
 
-  /* Enable DSI clock */
-  __HAL_RCC_DSI_CLK_ENABLE();
-
   /** ################ Set DSI clock to D-PHY source clock ################## **/
 
   /* Start and configurre PLL3 */
@@ -1727,49 +1746,10 @@ static void DSI_MspInit(DSI_HandleTypeDef *hdsi)
   PLL3InitPeriph.PLL3.PLL3Source = RCC_PLLSOURCE_HSE;
   (void)HAL_RCCEx_PeriphCLKConfig(&PLL3InitPeriph);
 
-  __HAL_RCC_DSI_CLK_ENABLE();
-
-  /* Switch to D-PHY source clock */
-  /* Enable the DSI host */
-  hlcd_dsi.Instance = DSI;
-
-  __HAL_DSI_ENABLE(&hlcd_dsi);
-
-  /* Enable the DSI PLL */
-  __HAL_DSI_PLL_ENABLE(&hlcd_dsi);
-
-  HAL_Delay(1);
-
-  /* Enable the clock lane and the digital section of the D-PHY   */
-  hlcd_dsi.Instance->PCTLR |= (DSI_PCTLR_CKE | DSI_PCTLR_DEN);
-
-  /* Set the TX escape clock division factor */
-  hlcd_dsi.Instance->CCR = 4;
-
-  HAL_Delay(1);
-
-  /* Config DSI Clock to DSI PHY */
-  DSIPHYInitPeriph.PeriphClockSelection = RCC_PERIPHCLK_DSI;
-  DSIPHYInitPeriph.DsiClockSelection    = RCC_DSICLKSOURCE_DSIPHY;
-
-  (void)HAL_RCCEx_PeriphCLKConfig(&DSIPHYInitPeriph);
-
-  /* Reset  */
-  HAL_Delay(11);
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5, GPIO_PIN_SET);
-  HAL_Delay(150);
-
-  /* Reset the TX escape clock division factor */
-  hlcd_dsi.Instance->CCR &= ~DSI_CCR_TXECKDIV;
-
-  /* Disable the DSI PLL */
-  __HAL_DSI_PLL_DISABLE(&hlcd_dsi);
-
-  /* Disable the DSI host */
-  __HAL_DSI_DISABLE(&hlcd_dsi);
-
   /** ######################################################################### **/
 
+  /* Enable DSI clock */
+  __HAL_RCC_DSI_CLK_ENABLE();
 
   /* Enable DSI NVIC interrupt */
   /* Default is lowest priority level */

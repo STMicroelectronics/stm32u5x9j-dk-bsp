@@ -92,7 +92,6 @@ OSPI_NOR_Ctx_t Ospi_Nor_Ctx[OSPI_NOR_INSTANCES_NUMBER] = {{
   */
 
 
-
 /* Private constants --------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /** @defgroup STM32U5x9J_DISCOVERY_OSPI_NOR_Private_Variables OSPI NOR Private Variables
@@ -104,7 +103,6 @@ static uint32_t OspiNor_IsMspCbValid[OSPI_NOR_INSTANCES_NUMBER] = {0};
 /**
   * @}
   */
-
 
 
 /* Private functions ---------------------------------------------------------*/
@@ -1036,7 +1034,6 @@ int32_t BSP_OSPI_NOR_LeaveDeepPowerDown(uint32_t Instance)
 /**
   * @}
   */
-
 
 
 /** @addtogroup STM32U5x9J_DISCOVERY_OSPI_NOR_Private_Functions OSPI NOR Private Functions
