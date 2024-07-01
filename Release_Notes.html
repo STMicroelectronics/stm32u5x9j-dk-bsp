@@ -43,14 +43,11 @@
 <div class="col-sm-12 col-lg-8">
 <h1 id="update-history">Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section4" checked aria-hidden="true"> <label for="collapse-section4" checked aria-hidden="true"><strong>V1.3.0 / 13-February-2024</strong></label>
+<input type="checkbox" id="collapse-section5" checked aria-hidden="true"> <label for="collapse-section5" checked aria-hidden="true"><strong>V1.3.1 / 05-June-2024</strong></label>
 <div>
 <h2 id="main-changes">Main Changes</h2>
 <ul>
-<li>Set DSI default clock in <strong>stm32u5x9j_discovery_lcd</strong> driver</li>
-<li>Restore GPIO configuration for I2C after being previously initialized in <strong>stm32u5x9j_discovery_ranging_sensor</strong> driver</li>
-<li>MISRA-C 2012 and MCUAstyle coding rules compliance Formatting</li>
-<li>STM32U5x9J-DK_BSP_User_Manual.chm: Updated</li>
+<li>Fix printf() implementation to be compliant with IAR 9.x</li>
 </ul>
 <h2 id="dependencies">Dependencies</h2>
 <p>This software release is compatible with:</p>
@@ -65,12 +62,12 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" checked aria-hidden="true"><strong>V1.2.0 / 20-October-2023</strong></label>
+<input type="checkbox" id="collapse-section4" aria-hidden="true"> <label for="collapse-section4" checked aria-hidden="true"><strong>V1.3.0 / 13-February-2024</strong></label>
 <div>
 <h2 id="main-changes-1">Main Changes</h2>
 <ul>
-<li>Add <strong>stm32u5x9j_discovery_env_sensors</strong> driver to support Temperature sensor</li>
-<li>Update <strong>stm32u5x9j_discovery_hspi.c</strong> bsp driver by HSPI tuning value</li>
+<li>Set DSI default clock in <strong>stm32u5x9j_discovery_lcd</strong> driver</li>
+<li>Restore GPIO configuration for I2C after being previously initialized in <strong>stm32u5x9j_discovery_ranging_sensor</strong> driver</li>
 <li>MISRA-C 2012 and MCUAstyle coding rules compliance Formatting</li>
 <li>STM32U5x9J-DK_BSP_User_Manual.chm: Updated</li>
 </ul>
@@ -87,12 +84,13 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" checked aria-hidden="true"><strong>V1.1.0 / 07-June-2023</strong></label>
+<input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" checked aria-hidden="true"><strong>V1.2.0 / 20-October-2023</strong></label>
 <div>
 <h2 id="main-changes-2">Main Changes</h2>
 <ul>
+<li>Add <strong>stm32u5x9j_discovery_env_sensors</strong> driver to support Temperature sensor</li>
+<li>Update <strong>stm32u5x9j_discovery_hspi.c</strong> bsp driver by HSPI tuning value</li>
 <li>MISRA-C 2012 and MCUAstyle coding rules compliance Formatting</li>
-<li>Update Init sequence in stm32u5x9j_discovery_lcd.c driver</li>
 <li>STM32U5x9J-DK_BSP_User_Manual.chm: Updated</li>
 </ul>
 <h2 id="dependencies-2">Dependencies</h2>
@@ -108,11 +106,13 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section1" aria-hidden="true"> <label for="collapse-section1" checked aria-hidden="true"><strong>V1.0.0 / 08-February-2023</strong></label>
+<input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" checked aria-hidden="true"><strong>V1.1.0 / 07-June-2023</strong></label>
 <div>
 <h2 id="main-changes-3">Main Changes</h2>
 <ul>
-<li>First official release of <strong>STM32U5x9J-DK</strong> BSP drivers in line with STM32Cube BSP drivers development guidelines (UM2298)</li>
+<li>MISRA-C 2012 and MCUAstyle coding rules compliance Formatting</li>
+<li>Update Init sequence in stm32u5x9j_discovery_lcd.c driver</li>
+<li>STM32U5x9J-DK_BSP_User_Manual.chm: Updated</li>
 </ul>
 <h2 id="dependencies-3">Dependencies</h2>
 <p>This software release is compatible with:</p>
@@ -120,6 +120,25 @@
 <li>BSP common drivers <strong>V7.2.1</strong> or above</li>
 </ul>
 <h2 id="limitations-3">Limitations</h2>
+<ul>
+<li>Multitcouch functionality not supported</li>
+<li>eMMC driver will be subject to optimization in the next release</li>
+</ul>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section1" aria-hidden="true"> <label for="collapse-section1" checked aria-hidden="true"><strong>V1.0.0 / 08-February-2023</strong></label>
+<div>
+<h2 id="main-changes-4">Main Changes</h2>
+<ul>
+<li>First official release of <strong>STM32U5x9J-DK</strong> BSP drivers in line with STM32Cube BSP drivers development guidelines (UM2298)</li>
+</ul>
+<h2 id="dependencies-4">Dependencies</h2>
+<p>This software release is compatible with:</p>
+<ul>
+<li>BSP common drivers <strong>V7.2.1</strong> or above</li>
+</ul>
+<h2 id="limitations-4">Limitations</h2>
 <ul>
 <li>Multitcouch functionality not supported</li>
 <li>eMMC driver will be subject to optimization in the next release</li>
